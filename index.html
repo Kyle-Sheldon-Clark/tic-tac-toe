@@ -19,5 +19,16 @@
         <div class="square" id="8"></div>
         <div class="square" id="9"></div>
     </div>
+    <script>
+        function selectSquare(selectedSquare) {
+            document.getElementById(`${selectedSquare}`).innerText = 'X';
+        }
+        
+        for (let i = 1; i <= 9; i++) {
+            document.getElementById(`${i}`).addEventListener('click', function () {
+                selectSquare(i)
+            });
+        }
+    </script>
 </body>
 </html>
