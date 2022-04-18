@@ -1,0 +1,13 @@
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70vh;
+    height: 70vh;
+}
+
+.square {
+    width: 33%;
+    height: 33%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
