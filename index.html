@@ -21,18 +21,54 @@
     </div>
     <script>
         let currentPlayer = 'X';
+        let rounds = 0;
         let board = [
             [],
             [],
             []
         ];
 
+        function isGameOver(selectedSquareRow, selectedSquareCol) {
+            //minimum 5 rounds
+            //then after every round check if win
+            //check x, y, and diagonal
+            //check current row if all are same
+            //check current column in every row if all are same
+            //check first middle then last
+            //check last middle then first for diaganol
+            if (board[0][0] === currentPlayer && board[0][1] === currentPlayer && board[0][2] === currentPlayer) {
+                return true;
+            } else if (board[1][0] === currentPlayer && board[1][1] === currentPlayer && board[1][2] === currentPlayer) {
+                return true;
+            } else if (board[2][0] === currentPlayer && board[2][1] === currentPlayer && board[2][2] === currentPlayer) {
+                return true;
+            } else if (board[0][0] === currentPlayer && board[1][0] === currentPlayer && board[2][0] === currentPlayer) {
+                return true;
+            } else if (board[0][1] === currentPlayer && board[1][1] === currentPlayer && board[2][1] === currentPlayer) {
+                return true;
+            } else if (board[0][2] === currentPlayer && board[1][2] === currentPlayer && board[2][2] === currentPlayer) {
+                return true;
+            } else if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
+                return true;
+            } else if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
         function updateSquare(selectedSquareRow, selectedSquareCol) {
             board[selectedSquareRow-1][selectedSquareCol-1] = currentPlayer;
             let squareToUpdate = document.getElementById(`${selectedSquareRow}-${selectedSquareCol}`);
             if (squareToUpdate.innerText === '') {
                 squareToUpdate.innerText = currentPlayer;
+            }
+            rounds++;
+            if (rounds >= 5) {
+                if (isGameOver(selectedSquareRow-1, selectedSquareCol-1)) {
+                    document.body.style = 'background-color: green;';
+                    return;
+                }
             }
             if (currentPlayer === 'X') {
                 currentPlayer = 'O';
