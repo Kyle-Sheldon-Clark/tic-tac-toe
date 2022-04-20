@@ -9,15 +9,15 @@
 </head>
 <body>
     <div class="board">
+        <button class="square" id="0-0"></button>
+        <button class="square" id="0-1"></button>
+        <button class="square" id="0-2"></button>
+        <button class="square" id="1-0"></button>
         <button class="square" id="1-1"></button>
         <button class="square" id="1-2"></button>
-        <button class="square" id="1-3"></button>
+        <button class="square" id="2-0"></button>
         <button class="square" id="2-1"></button>
         <button class="square" id="2-2"></button>
-        <button class="square" id="2-3"></button>
-        <button class="square" id="3-1"></button>
-        <button class="square" id="3-2"></button>
-        <button class="square" id="3-3"></button>
     </div>
     <script>
         let currentPlayer = 'X';
@@ -61,20 +61,20 @@
         }
 
         function changeSquareColor(row, col) {
-            document.getElementById(`${row+1}-${col+1}`).style = 'background-color: green;';
+            document.getElementById(`${row}-${col}`).style = 'background-color: green;';
         }
 
         function updateSquare(selectedSquareRow, selectedSquareCol) {
-            board[selectedSquareRow-1][selectedSquareCol-1] = currentPlayer;
+            board[selectedSquareRow][selectedSquareCol] = currentPlayer;
             let squareToUpdate = document.getElementById(`${selectedSquareRow}-${selectedSquareCol}`);
             if (squareToUpdate.innerText === '') {
                 squareToUpdate.innerText = currentPlayer;
             }
             rounds++;
             if (rounds >= 5) {
-                if (isGameOver(selectedSquareRow-1, selectedSquareCol-1)) {
-                    for (let i = 1; i <= 3; i++) {
-                        for (let j = 1; j <= 3; j++) {
+                if (isGameOver(selectedSquareRow, selectedSquareCol)) {
+                    for (let i = 0; i <= 2; i++) {
+                        for (let j = 0; j <= 2; j++) {
                             document.getElementById(`${i}-${j}`).disabled = true;
                         }
                     }
@@ -87,8 +87,8 @@
             }
         }
         
-        for (let i = 1; i <= 3; i++) {
-            for (let j = 1; j <= 3; j++) {
+        for (let i = 0; i <= 2; i++) {
+            for (let j = 0; j <= 2; j++) {
                 document.getElementById(`${i}-${j}`).addEventListener('click', function () {
                     updateSquare(i, j);
                 });
