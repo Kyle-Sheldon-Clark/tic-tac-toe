@@ -19,6 +19,7 @@
         <button class="square" id="2-1"></button>
         <button class="square" id="2-2"></button>
     </div>
+    <button id="reset">Reset Game</button>
     <script>
         let currentPlayer = 'X';
         let rounds = 0;
@@ -64,6 +65,18 @@
             document.getElementById(`${row}-${col}`).style = 'background-color: green;';
         }
 
+        function resetBoard() {
+            for (let i = 0; i <= 2; i++) {
+                for (let j = 0; j <= 2; j++) {
+                    let squareToReset = document.getElementById(`${i}-${j}`);
+                    squareToReset.disabled = false;
+                    squareToReset.innerText = '';
+                    squareToReset.style = 'background-color: white;'
+                    board[i][j] = null;
+                }
+            }
+        }
+
         function updateSquare(selectedSquareRow, selectedSquareCol) {
             board[selectedSquareRow][selectedSquareCol] = currentPlayer;
             let squareToUpdate = document.getElementById(`${selectedSquareRow}-${selectedSquareCol}`);
@@ -87,6 +100,7 @@
             }
         }
         
+        document.getElementById('reset').addEventListener('click', resetBoard);
         for (let i = 0; i <= 2; i++) {
             for (let j = 0; j <= 2; j++) {
                 document.getElementById(`${i}-${j}`).addEventListener('click', function () {
