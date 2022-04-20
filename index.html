@@ -9,15 +9,15 @@
 </head>
 <body>
     <div class="board">
-        <div class="square" id="1-1"></div>
-        <div class="square" id="1-2"></div>
-        <div class="square" id="1-3"></div>
-        <div class="square" id="2-1"></div>
-        <div class="square" id="2-2"></div>
-        <div class="square" id="2-3"></div>
-        <div class="square" id="3-1"></div>
-        <div class="square" id="3-2"></div>
-        <div class="square" id="3-3"></div>
+        <button class="square" id="1-1"></button>
+        <button class="square" id="1-2"></button>
+        <button class="square" id="1-3"></button>
+        <button class="square" id="2-1"></button>
+        <button class="square" id="2-2"></button>
+        <button class="square" id="2-3"></button>
+        <button class="square" id="3-1"></button>
+        <button class="square" id="3-2"></button>
+        <button class="square" id="3-3"></button>
     </div>
     <script>
         let currentPlayer = 'X';
@@ -31,22 +31,13 @@
         function isGameOver(selectedSquareRow, selectedSquareCol) {
             //minimum 5 rounds
             //then after every round check if win
-            //check x, y, and diagonal
             //check current row if all are same
             //check current column in every row if all are same
-            //check first middle then last
-            //check last middle then first for diaganol
-            if (board[0][0] === currentPlayer && board[0][1] === currentPlayer && board[0][2] === currentPlayer) {
+            //check left to right diaganol
+            //check right to left diaganol 
+            if (board[selectedSquareRow][0] === currentPlayer && board[selectedSquareRow][1] === currentPlayer && board[selectedSquareRow][2] === currentPlayer) {
                 return true;
-            } else if (board[1][0] === currentPlayer && board[1][1] === currentPlayer && board[1][2] === currentPlayer) {
-                return true;
-            } else if (board[2][0] === currentPlayer && board[2][1] === currentPlayer && board[2][2] === currentPlayer) {
-                return true;
-            } else if (board[0][0] === currentPlayer && board[1][0] === currentPlayer && board[2][0] === currentPlayer) {
-                return true;
-            } else if (board[0][1] === currentPlayer && board[1][1] === currentPlayer && board[2][1] === currentPlayer) {
-                return true;
-            } else if (board[0][2] === currentPlayer && board[1][2] === currentPlayer && board[2][2] === currentPlayer) {
+            } else if (board[0][selectedSquareCol] === currentPlayer && board[1][selectedSquareCol] === currentPlayer && board[2][selectedSquareCol] === currentPlayer) {
                 return true;
             } else if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
                 return true;
@@ -67,9 +58,13 @@
             if (rounds >= 5) {
                 if (isGameOver(selectedSquareRow-1, selectedSquareCol-1)) {
                     document.body.style = 'background-color: green;';
-                    return;
+                    for (let i = 1; i <= 3; i++) {
+                        for (let j = 1; j <= 3; j++) {
+                            document.getElementById(`${i}-${j}`).disabled = true;
+                        }
+                    }
                 }
-            }
+            }   
             if (currentPlayer === 'X') {
                 currentPlayer = 'O';
             } else {
