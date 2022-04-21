@@ -22,10 +22,6 @@
     color: black;
 }
 
-.square:hover {
-    box-shadow: 4px 4px rgba(0, 0, 0, 0.3);
-    background-color: rgba(0, 0, 0, 0.15);
-}
 
 .square:disabled:hover {
     box-shadow: none;

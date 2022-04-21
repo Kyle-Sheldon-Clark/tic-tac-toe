@@ -71,7 +71,7 @@
                     let squareToReset = document.getElementById(`${i}-${j}`);
                     squareToReset.disabled = false;
                     squareToReset.innerText = '';
-                    squareToReset.style = 'background-color: white;'
+                    squareToReset.style.backgroundColor = 'white'
                     board[i][j] = null;
                 }
             }
@@ -99,7 +99,18 @@
                 currentPlayer = 'X';
             }
         }
-        
+
+        let squares = document.querySelectorAll('.square');
+        squares.forEach(function (square) {
+            square.addEventListener('mouseenter', function () {
+                square.style.backgroundColor = 'rgba(0, 0, 0, 0.15)';
+                square.style.boxShadow = '4px 4px rgba(0, 0, 0, 0.3)';
+            })
+            square.addEventListener('mouseleave', function () {
+                square.style.backgroundColor = 'white';
+                square.style.boxShadow = 'none';
+            })
+        })
         document.getElementById('reset').addEventListener('click', resetBoard);
         for (let i = 0; i <= 2; i++) {
             for (let j = 0; j <= 2; j++) {
