@@ -73,7 +73,7 @@
         }
 
         function changeSquareColor(row, column, newColor) {
-            document.getElementById(`${row}-${column}`).style.backgroundColor = newColor;
+            document.getElementById(`${row}-${column}`).style = `background-color: ${newColor}`;
         }
 
         function resetBoard() {
