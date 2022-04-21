@@ -37,32 +37,43 @@
             //check left to right diaganol
             //check right to left diaganol 
             if (board[selectedSquareRow][0] === currentPlayer && board[selectedSquareRow][1] === currentPlayer && board[selectedSquareRow][2] === currentPlayer) {
-                changeSquareColor(selectedSquareRow, 0);
-                changeSquareColor(selectedSquareRow, 1);
-                changeSquareColor(selectedSquareRow, 2);
+                changeSquareColor(selectedSquareRow, 0, 'green');
+                changeSquareColor(selectedSquareRow, 1, 'green');
+                changeSquareColor(selectedSquareRow, 2, 'green');
                 return true;
             } else if (board[0][selectedSquareCol] === currentPlayer && board[1][selectedSquareCol] === currentPlayer && board[2][selectedSquareCol] === currentPlayer) {
-                changeSquareColor(0, selectedSquareCol);
-                changeSquareColor(1, selectedSquareCol);
-                changeSquareColor(2, selectedSquareCol);
+                changeSquareColor(0, selectedSquareCol, 'green');
+                changeSquareColor(1, selectedSquareCol, 'green');
+                changeSquareColor(2, selectedSquareCol, 'green');
                 return true;
             } else if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
-                changeSquareColor(0, 0);
-                changeSquareColor(1, 1);
-                changeSquareColor(2, 2);
+                changeSquareColor(0, 0, 'green');
+                changeSquareColor(1, 1, 'green');
+                changeSquareColor(2, 2, 'green');
                 return true;
             } else if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
-                changeSquareColor(0, 2);
-                changeSquareColor(1, 1);
-                changeSquareColor(2, 0);
+                changeSquareColor(0, 2, 'green');
+                changeSquareColor(1, 1, 'green');
+                changeSquareColor(2, 0, 'green');
+                return true;
+            } else if (rounds >= 9) {
+                changeSquareColor(0, 0, 'red');
+                changeSquareColor(0, 1, 'red');
+                changeSquareColor(0, 2, 'red');
+                changeSquareColor(1, 0, 'red');
+                changeSquareColor(1, 1, 'red');
+                changeSquareColor(1, 2, 'red');
+                changeSquareColor(2, 0, 'red');
+                changeSquareColor(2, 1, 'red');
+                changeSquareColor(2, 2, 'red');
                 return true;
             } else {
                 return false;
             }
         }
 
-        function changeSquareColor(row, col) {
-            document.getElementById(`${row}-${col}`).style = 'background-color: green;';
+        function changeSquareColor(row, column, newColor) {
+            document.getElementById(`${row}-${column}`).style.backgroundColor = newColor;
         }
 
         function resetBoard() {
@@ -71,8 +82,9 @@
                     let squareToReset = document.getElementById(`${i}-${j}`);
                     squareToReset.disabled = false;
                     squareToReset.innerText = '';
-                    squareToReset.style.backgroundColor = 'white'
+                    squareToReset.style.backgroundColor = 'white';
                     board[i][j] = null;
+                    rounds = 0;
                 }
             }
         }
