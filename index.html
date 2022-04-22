@@ -108,28 +108,28 @@
         }
 
         function updateSquare(selectedSquareRow, selectedSquareCol) {
-            board[selectedSquareRow][selectedSquareCol] = currentPlayer;
             let squareToUpdate = document.getElementById(`${selectedSquareRow}-${selectedSquareCol}`);
             if (squareToUpdate.innerText === '') {
+                board[selectedSquareRow][selectedSquareCol] = currentPlayer;
                 squareToUpdate.innerText = currentPlayer;
-            }
-            rounds++;
-            if (rounds >= 5) {
-                if (isGameOver(selectedSquareRow, selectedSquareCol)) {
-                    for (let i = 0; i <= 2; i++) {
-                        for (let j = 0; j <= 2; j++) {
-                            document.getElementById(`${i}-${j}`).disabled = true;
+                rounds++;
+                if (rounds >= 5) {
+                    if (isGameOver(selectedSquareRow, selectedSquareCol)) {
+                        for (let i = 0; i <= 2; i++) {
+                            for (let j = 0; j <= 2; j++) {
+                                document.getElementById(`${i}-${j}`).disabled = true;
+                            }
                         }
+                        return;
                     }
-                    return;
+                }   
+                if (currentPlayer === 'X') {
+                    currentPlayer = 'O';
+                } else {
+                    currentPlayer = 'X';
                 }
-            }   
-            if (currentPlayer === 'X') {
-                currentPlayer = 'O';
-            } else {
-                currentPlayer = 'X';
+                updateGameStateExplanation();
             }
-            updateGameStateExplanation();
         }
 
         let squares = document.querySelectorAll('.square');
