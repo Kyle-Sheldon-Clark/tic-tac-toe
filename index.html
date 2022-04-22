@@ -20,6 +20,7 @@
         <button class="square" id="2-2"></button>
     </div>
     <button id="reset">Reset Game</button>
+    <div id="gameStateExplanation"></div>
     <script>
         let currentPlayer = 'X';
         let rounds = 0;
@@ -40,21 +41,25 @@
                 changeSquareColor(selectedSquareRow, 0, 'green');
                 changeSquareColor(selectedSquareRow, 1, 'green');
                 changeSquareColor(selectedSquareRow, 2, 'green');
+                updateGameStateExplanation('current player wins');
                 return true;
             } else if (board[0][selectedSquareCol] === currentPlayer && board[1][selectedSquareCol] === currentPlayer && board[2][selectedSquareCol] === currentPlayer) {
                 changeSquareColor(0, selectedSquareCol, 'green');
                 changeSquareColor(1, selectedSquareCol, 'green');
                 changeSquareColor(2, selectedSquareCol, 'green');
+                updateGameStateExplanation('current player wins');
                 return true;
             } else if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
                 changeSquareColor(0, 0, 'green');
                 changeSquareColor(1, 1, 'green');
                 changeSquareColor(2, 2, 'green');
+                updateGameStateExplanation('current player wins');
                 return true;
             } else if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
                 changeSquareColor(0, 2, 'green');
                 changeSquareColor(1, 1, 'green');
                 changeSquareColor(2, 0, 'green');
+                updateGameStateExplanation('current player wins');
                 return true;
             } else if (rounds >= 9) {
                 changeSquareColor(0, 0, 'red');
@@ -66,9 +71,22 @@
                 changeSquareColor(2, 0, 'red');
                 changeSquareColor(2, 1, 'red');
                 changeSquareColor(2, 2, 'red');
+                updateGameStateExplanation('game ends in a tie');
                 return true;
             } else {
                 return false;
+            }
+        }
+
+        function updateGameStateExplanation(gameState) {
+            
+            if (gameState === 'current player wins') {
+                console.log('here')
+                document.getElementById('gameStateExplanation').innerText = `Player ${currentPlayer} wins!`;
+            } else if (gameState === 'game ends in a tie') {
+                document.getElementById('gameStateExplanation').innerText = `Game end in a tie!`;
+            } else {
+                document.getElementById('gameStateExplanation').innerText = `Player ${currentPlayer}'s move`;
             }
         }
 
@@ -103,6 +121,7 @@
                             document.getElementById(`${i}-${j}`).disabled = true;
                         }
                     }
+                    return;
                 }
             }   
             if (currentPlayer === 'X') {
@@ -110,6 +129,7 @@
             } else {
                 currentPlayer = 'X';
             }
+            updateGameStateExplanation();
         }
 
         let squares = document.querySelectorAll('.square');
