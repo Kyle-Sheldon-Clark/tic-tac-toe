@@ -21,7 +21,7 @@
             <button class="square" id="2-2"></button>
         </div>
         <button id="reset">Reset Game</button>
-        <div id="gameStateExplanation"></div>
+        <div id="gameStateExplanation">Player X's move</div>
     </div>
     <script>
         let currentPlayer = 'X';
@@ -64,15 +64,15 @@
                 updateGameStateExplanation('current player wins');
                 return true;
             } else if (rounds >= 9) {
-                changeSquareColor(0, 0, '#ff4d6d');
-                changeSquareColor(0, 1, '#ff4d6d');
-                changeSquareColor(0, 2, '#ff4d6d');
-                changeSquareColor(1, 0, '#ff4d6d');
-                changeSquareColor(1, 1, '#ff4d6d');
-                changeSquareColor(1, 2, '#ff4d6d');
-                changeSquareColor(2, 0, '#ff4d6d');
-                changeSquareColor(2, 1, '#ff4d6d');
-                changeSquareColor(2, 2, '#ff4d6d');
+                changeSquareColor(0, 0, '#ffcfd2');
+                changeSquareColor(0, 1, '#ffcfd2');
+                changeSquareColor(0, 2, '#ffcfd2');
+                changeSquareColor(1, 0, '#ffcfd2');
+                changeSquareColor(1, 1, '#ffcfd2');
+                changeSquareColor(1, 2, '#ffcfd2');
+                changeSquareColor(2, 0, '#ffcfd2');
+                changeSquareColor(2, 1, '#ffcfd2');
+                changeSquareColor(2, 2, '#ffcfd2');
                 updateGameStateExplanation('game ends in a tie');
                 return true;
             } else {
@@ -139,11 +139,11 @@
         let squares = document.querySelectorAll('.square');
         squares.forEach(function (square) {
             square.addEventListener('mouseenter', function () {
-                square.style.backgroundColor = 'rgba(0, 0, 0, 0.15)';
+                //square.style.backgroundColor = 'rgba(0, 0, 0, 0.15)';
                 square.style.boxShadow = '4px 4px rgba(0, 0, 0, 0.3)';
             })
             square.addEventListener('mouseleave', function () {
-                square.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                //square.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
                 square.style.boxShadow = 'none';
             })
         })
